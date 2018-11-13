@@ -2,7 +2,7 @@ package updateActiveObject;
 
 import java.util.concurrent.Callable;
 
-public class Update implements Callable<Object>  {
+public class Create implements Callable {
 
 	@Override
 	public Object call() throws Exception {
