@@ -4,29 +4,33 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-public class Canal implements ObsGenAsync {
+import generator.Generator;
+import generator.GeneratorAsync;
+import observer.ObsGenAsync;
+
+public class Canal implements ObsGenAsync, GeneratorAsync {
 	private ExecutorService executor = Executors.newSingleThreadExecutor();
+	private Generator generator;
 
 	@Override
-	public Future<Integer> update(Integer input) {
+	public Future<Integer> update(Generator g) {
 		return executor.submit(() -> {
-            Thread.sleep(1000);
-            return input * input;
-        });
+			Thread.sleep(1000);
+			setGenerator(g);
+			return g.getValue();
+		});
 	}
 
 	@Override
-	public int getValue() {
-		// TODO Auto-generated method stub
-		return 0;
+	public Future<Integer> getValue() {
+		return executor.submit(() -> {
+			Thread.sleep(1000);
+			return generator.getValue();
+		});
 	}
 
-	@Override
-	public Future<Integer> create(Integer input) {
-		return executor.submit(() -> {
-            Thread.sleep(1000);
-            return input * input;
-        });
+	public void setGenerator(Generator generator) {
+		this.generator = generator;
 	}
 
 }
