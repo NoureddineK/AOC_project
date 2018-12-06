@@ -3,12 +3,14 @@ package generator;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import java.util.logging.Logger;
 
 import diffusion.Diffusion;
 import observer.ObsGenAsync;
 import observer.ObserverGenerator;
 
 public class GeneratorImp implements Generator {
+	private final Logger LOGGER = Logger.getLogger(this.getClass().getName());
 	private int value;
 	private List<ObserverGenerator> observers;
 	private List<ObsGenAsync> observersGenAsync;
@@ -60,11 +62,10 @@ public class GeneratorImp implements Generator {
 		return value;
 	}
 
-
 	@Override
 	public void setValue(int value) throws InterruptedException, ExecutionException {
 		this.value = value;
-		this.diffusion.execute(this);
+		this.diffusion.executeDiffusion(this);
 	}
 
 }

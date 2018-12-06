@@ -3,7 +3,10 @@ package diffusion;
 import generator.Generator;
 
 public interface Diffusion {
-	void configure();
 
-	void execute(Generator g);
+	int GetDiffusionValue();
+
+	void configureDiffusion(Generator generator, int nbObserver);
+
+	void executeDiffusion(Generator generator);
 }

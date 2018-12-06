@@ -1,10 +1,13 @@
-package updateActiveObject;
+package view;
+
+import java.util.Observable;
+import java.util.logging.Logger;
 
 import generator.Generator;
 import observer.ObserverGenerator;
 
 public class Afficheur implements ObserverGenerator {
-
+	private final Logger LOGGER = Logger.getLogger(this.getClass().getName());
 	private Generator generator;
 
 	public Generator getGenerator() {
@@ -17,7 +20,12 @@ public class Afficheur implements ObserverGenerator {
 
 	@Override
 	public void update(Generator generator) {
-		
+		setGenerator(generator);
 	}
+
+	public Integer getValue() {
+		return null;
+	}
+
 
 }
