@@ -1,27 +1,31 @@
 package updateActiveObject;
 
-import java.util.Observable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.logging.Logger;
 
 import generator.Generator;
 import generator.GeneratorAsync;
 import observer.ObsGenAsync;
+import update.Update;
+import view.Afficheur;
 
 public class Canal implements ObsGenAsync, GeneratorAsync {
 	private final Logger LOGGER = Logger.getLogger(this.getClass().getName());
 	private ExecutorService executor = Executors.newSingleThreadExecutor();
+	private ScheduledExecutorService s = Executors.newScheduledThreadPool(10);
 	private Generator generator;
 
 	@Override
-	public Future<Integer> update(Generator g) {
-		return executor.submit(() -> {
-			Thread.sleep(1000);
+	public void update(Generator g) {
+		 
+		 Update mi = new Update(g, new Afficheur());
+			LOGGER.info("Calling schedule");
+			s.schedule(mi, 10, TimeUnit.SECONDS);
 			setGenerator(g);
-			return g.getValue();
-		});
+		 
 	}
 
 	@Override
@@ -40,11 +44,6 @@ public class Canal implements ObsGenAsync, GeneratorAsync {
 		this.generator = generator;
 	}
 
-	@Override
-	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 }
