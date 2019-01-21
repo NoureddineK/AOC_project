@@ -1,31 +1,30 @@
 package view;
 
-import java.util.Observable;
+import java.util.concurrent.Future;
 import java.util.logging.Logger;
-
-import generator.Generator;
+import generator.GeneratorAsync;
 import observer.ObserverGenerator;
+
 
 public class Afficheur implements ObserverGenerator {
 	private final Logger LOGGER = Logger.getLogger(this.getClass().getName());
-	private Generator generator;
-
-	public Generator getGenerator() {
-		return generator;
-	}
-
-	public void setGenerator(Generator generator) {
-		this.generator = generator;
+	private Integer value;
+	private int id; 
+	
+	public Afficheur(int id) {
+		this.id = id;
+		this.value = 0;
 	}
 
 	@Override
-	public void update(Generator generator) {
-		setGenerator(generator);
+	public void update(GeneratorAsync g) throws Exception {
+		Future<Integer> future = g.getValue();
+		value = future.get();
+		System.out.println("Afficheur " + id + " : " + value);
 	}
 
 	public Integer getValue() {
-		return null;
+		return value;
 	}
-
 
 }

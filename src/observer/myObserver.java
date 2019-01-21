@@ -1,5 +1,7 @@
 package observer;
 
+import java.util.concurrent.Future;
+
 public interface myObserver<T> {
-	public void update(T subject);
+	public Future<Void> update(T subject);
 }

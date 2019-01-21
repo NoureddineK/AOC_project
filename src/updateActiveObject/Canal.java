@@ -1,49 +1,55 @@
 package updateActiveObject;
 
-import java.util.concurrent.ExecutorService;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
-
 import generator.Generator;
 import generator.GeneratorAsync;
 import observer.ObsGenAsync;
+import observer.ObserverGenerator;
 import update.Update;
-import view.Afficheur;
 
 public class Canal implements ObsGenAsync, GeneratorAsync {
 	private final Logger LOGGER = Logger.getLogger(this.getClass().getName());
-	private ExecutorService executor = Executors.newSingleThreadExecutor();
-	private ScheduledExecutorService s = Executors.newScheduledThreadPool(10);
+	private ScheduledExecutorService scheduler;// = Executors.newScheduledThreadPool(10);
+	private List<ObserverGenerator> diffusionList;
 	private Generator generator;
-
+	
+	public Canal (ScheduledExecutorService scheduler) {		
+		this.scheduler = scheduler;
+		this.diffusionList = new ArrayList<ObserverGenerator>();
+	}
+	
+	
 	@Override
-	public void update(Generator g) {
-		 
-		 Update mi = new Update(g, new Afficheur());
-			LOGGER.info("Calling schedule");
-			s.schedule(mi, 10, TimeUnit.SECONDS);
-			setGenerator(g);
+	public Future<Void> update(Generator generator) {
+		LOGGER.info("Calling schedule");
+		Update update = new Update(this, diffusionList);
+			
+			scheduler.schedule(update, 10, TimeUnit.SECONDS);
+			this.generator = generator;
+			return scheduler.schedule(update, 10, TimeUnit.MILLISECONDS);
 		 
 	}
 
 	@Override
 	public Future<Integer> getValue() {
-		return executor.submit(() -> {
-			Thread.sleep(1000);
-			return generator.getValue();
-		});
+		GetGenValue getGenValue = new GetGenValue(this.generator,this);
+		return scheduler.schedule(getGenValue, 0, TimeUnit.MILLISECONDS);
 	}
 
-	public Generator getGenerator() {
-		return this.generator;
+	@Override
+	public void attach(ObserverGenerator obs) {
+		diffusionList.add(obs);		
 	}
 
-	public void setGenerator(Generator generator) {
-		this.generator = generator;
+	@Override
+	public void detach(ObserverGenerator obs) {
+		diffusionList.remove(obs);
 	}
-
-
 
 }

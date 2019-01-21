@@ -1,5 +1,6 @@
 package generator;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -9,43 +10,32 @@ import diffusion.Diffusion;
 import observer.ObsGenAsync;
 import observer.ObserverGenerator;
 
-public class GeneratorImp implements Generator {
+public class GeneratorImp implements Generator, Runnable {
 	private final Logger LOGGER = Logger.getLogger(this.getClass().getName());
-	private int value;
-	private List<ObserverGenerator> observers;
-	private List<ObsGenAsync> observersGenAsync;
+	
+	private Integer value;
+	//private List<ObserverGenerator> observers;
+	private List<ObsGenAsync> obsGenAsync;
 	private Diffusion diffusion;
 
-	public GeneratorImp(int value, List<ObserverGenerator> observers, List<ObsGenAsync> observersGenAsync,
-			Diffusion diffusion) {
-		super();
-		this.value = value;
-		this.observers = observers;
-		this.observersGenAsync = observersGenAsync;
+	public GeneratorImp(Diffusion diffusion) {
+		this.value = 0;
+		//this.observers = observers;
+		this.obsGenAsync = new ArrayList<>();
 		this.diffusion = diffusion;
 	}
 
 	@Override
-	public void attach(ObserverGenerator o) {
-		observers.add(o);
-	}
-
-	@Override
-	public void detach(ObserverGenerator o) {
-		observers.remove(o);
-	}
-
-	@Override
 	public void attach(ObsGenAsync o) {
-		observersGenAsync.add(o);
+		this.obsGenAsync.add(o);
 	}
 
 	@Override
 	public void detach(ObsGenAsync o) {
-		observersGenAsync.remove(o);
+		this.obsGenAsync.remove(o);
 	}
 
-	@Override
+	/*@Override
 	public void notifyAllObsGenes() throws InterruptedException, ExecutionException {
 		for (ObserverGenerator observer : observers) {
 			observer.update(this);
@@ -56,9 +46,9 @@ public class GeneratorImp implements Generator {
 			System.out.println(value.get());
 		}
 	}
-
+*/
 	@Override
-	public int getValue() {
+	public Integer getValue() {
 		return value;
 	}
 
@@ -67,5 +57,33 @@ public class GeneratorImp implements Generator {
 		this.value = value;
 		this.diffusion.executeDiffusion(this);
 	}
+
+	@Override
+	public void run() {
+		while(this.value < 10){
+
+		    try {
+		        Thread.sleep(1000);
+            } catch (Exception e){}
+		    diffusion.executeDiffusion(this);
+        }
+
+		
+	}
+
+	@Override
+	public Integer getValue(ObsGenAsync obs) {
+		 return diffusion.getDiffusionValue(obs,this);
+	}
+
+	@Override
+	public void increment() {
+		 this.value++;
+	        System.out.println("Generator: " + this.value);	
+	}
+	 public List<ObsGenAsync> getObserverAsyncs() {
+	        return obsGenAsync;
+	    }
+
 
 }
