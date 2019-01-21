@@ -15,40 +15,40 @@ import update.Update;
 
 public class Canal implements ObsGenAsync, GeneratorAsync {
 	private final Logger LOGGER = Logger.getLogger(this.getClass().getName());
-	private ScheduledExecutorService scheduler;// = Executors.newScheduledThreadPool(10);
+	private ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(10);
 	private List<ObserverGenerator> diffusionList;
 	private Generator generator;
-	
-	public Canal (ScheduledExecutorService scheduler) {		
-		this.scheduler = scheduler;
+
+	public Canal() {
+		LOGGER.info("Contructor: ");
 		this.diffusionList = new ArrayList<ObserverGenerator>();
 	}
-	
-	
+
 	@Override
 	public Future<Void> update(Generator generator) {
-		LOGGER.info("Calling schedule");
+		LOGGER.info("update: ");
 		Update update = new Update(this, diffusionList);
-			
-			scheduler.schedule(update, 10, TimeUnit.SECONDS);
-			this.generator = generator;
-			return scheduler.schedule(update, 10, TimeUnit.MILLISECONDS);
-		 
+		this.generator = generator;
+		return scheduler.schedule(update, 10, TimeUnit.MILLISECONDS);
+
 	}
 
 	@Override
 	public Future<Integer> getValue() {
-		GetGenValue getGenValue = new GetGenValue(this.generator,this);
+		LOGGER.info("getValue: ");
+		GetGenValue getGenValue = new GetGenValue(this.generator, this);
 		return scheduler.schedule(getGenValue, 0, TimeUnit.MILLISECONDS);
 	}
 
 	@Override
 	public void attach(ObserverGenerator obs) {
-		diffusionList.add(obs);		
+		LOGGER.info("attach: ");
+		diffusionList.add(obs);
 	}
 
 	@Override
 	public void detach(ObserverGenerator obs) {
+		LOGGER.info("detach: ");
 		diffusionList.remove(obs);
 	}
 

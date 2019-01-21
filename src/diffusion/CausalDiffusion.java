@@ -18,21 +18,21 @@ public class CausalDiffusion implements Diffusion {
 
 	@Override
 	public Integer getDiffusionValue(ObsGenAsync observerGeneratorAsync, GeneratorImp generator) {
-		// TODO Auto-generated method stub
+		LOGGER.info("getDiffusionValue : ");
 		return 0;
 	}
 
 
 	@Override
 	public void configureDiffusion(GeneratorImp generator, int nbObserver) {
-		// TODO Auto-generated method stub
+		LOGGER.info("configureDiffusion : ");
 		
 	}
 
 
 	@Override
 	public void executeDiffusion(GeneratorImp generator) {
-		// TODO Auto-generated method stub
+		LOGGER.info("executeDiffusion : ");
 		
 	}
 

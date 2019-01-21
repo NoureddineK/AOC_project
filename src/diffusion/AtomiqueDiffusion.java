@@ -10,39 +10,42 @@ import updateActiveObject.Canal;
 
 public class AtomiqueDiffusion implements Diffusion {
 	private final Logger LOGGER = Logger.getLogger(this.getClass().getName());
-	private List<ObsGenAsync> readers;
+	private List<ObsGenAsync> observers;
 	private boolean read;
 
 	public AtomiqueDiffusion() {
 		LOGGER.info("Constructor : ");
-		this.readers = new ArrayList<>();
+		this.observers = new ArrayList<>();
 		this.read = true;
 	}
 
 	@Override
 	public void configureDiffusion(GeneratorImp generator, int nbObserver) {
+		LOGGER.info("configureDiffusion : ");
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void executeDiffusion(GeneratorImp generator) {
+		LOGGER.info("executeDiffusion : ");
 		if (this.read) {
-			generator.increment();
+			generator.generateValue();
 			for (ObsGenAsync canal : generator.getObserverAsyncs()) {
 				canal.update(generator);
 			}
 			this.read = false;
-			this.readers.removeAll(this.readers);
+			this.observers.removeAll(this.observers);
 		}
 
 	}
 
 	@Override
 	public Integer getDiffusionValue(ObsGenAsync obsGenAsync, GeneratorImp generator) {
-		if (!this.readers.contains(obsGenAsync)) {
-			this.readers.add(obsGenAsync);
-			if (this.readers.size() == generator.getObserverAsyncs().size()) {
+		LOGGER.info("getDiffusionValue : ");
+		if (!this.observers.contains(obsGenAsync)) {
+			this.observers.add(obsGenAsync);
+			if (this.observers.size() == generator.getObserverAsyncs().size()) {
 				this.read = true;
 			}
 		}

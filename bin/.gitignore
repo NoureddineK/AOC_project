@@ -1,1 +1,8 @@
 /client/
+/diffusion/
+/generator/
+/observer/
+/update/
+/updateActiveObject/
+/Callable/
+/view/

@@ -13,12 +13,14 @@ public class Update implements Callable<Void> {
 	private List<ObserverGenerator> diffusionList;
 
 	public Update(GeneratorAsync generator, List<ObserverGenerator> diffusionList) {
+		LOGGER.info("Constructor: ");
 		this.generator = generator;
 		this.diffusionList = diffusionList;
 	}
 
 	@Override
 	public Void call() throws Exception {
+		LOGGER.info("call: ");
 		if (diffusionList.size() > 0) {
 			for (ObserverGenerator obsGen : diffusionList) {
 				obsGen.update(generator);

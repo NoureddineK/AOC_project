@@ -23,6 +23,6 @@ public interface Generator {
 
 	public Integer getValue(ObsGenAsync obs);
 
-	public void increment();
+	public void generateValue();
 
 }

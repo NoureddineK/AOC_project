@@ -1,13 +1,13 @@
 package Callable;
 
 import updateActiveObject.Canal;
-import view.Afficheur;
+import view.Display;
 
 public class UpdateAfficheurCallable {
 	private Canal canal;
-	private Afficheur afficheur;
+	private Display afficheur;
 
-	public UpdateAfficheurCallable(Canal canal, Afficheur afficheur) {
+	public UpdateAfficheurCallable(Canal canal, Display afficheur) {
 
 		this.canal = canal;
 		this.afficheur = afficheur;

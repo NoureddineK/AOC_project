@@ -12,8 +12,8 @@ public class SequentielDiffusion implements Diffusion {
 	private List<ObsGenAsync> observers;
 	private List<ObsGenAsync> readers;
 	private boolean ready;
-	private int value;
-	
+	private Integer value;
+
 	public SequentielDiffusion() {
 		LOGGER.info("Constructor : ");
 		value = 0;
@@ -21,41 +21,42 @@ public class SequentielDiffusion implements Diffusion {
 		readers = new ArrayList<ObsGenAsync>();
 		ready = true;
 	}
-	public void setValue(int v) {
+
+	public void setValue(Integer v) {
+		LOGGER.info("setValue : " + v);
 		value = v;
 	}
 
 	@Override
-	public Integer getDiffusionValue(ObsGenAsync observerGeneratorAsync, GeneratorImp generator) {	
+	public Integer getDiffusionValue(ObsGenAsync observerGeneratorAsync, GeneratorImp generator) {
+		LOGGER.info("getDiffusionValue : " + this.value);
 		return this.value;
 	}
 
 	@Override
 	public void configureDiffusion(GeneratorImp generator, int nbObserver) {
-		// TODO Auto-generated method stub
-		
+		LOGGER.info("configureDiffusion : ");
+
 	}
 
 	@Override
 	public void executeDiffusion(GeneratorImp generator) {
-		// TODO Auto-generated method stub
-		
-	}
-	public void execute(GeneratorImp g) {
-		g.increment();
+		LOGGER.info("executeDiffusion : ");
+		generator.generateValue();
 		if (ready) {
 			ready = false;
-			value = g.getValue();
+			value = generator.getValue();
 			readers = new ArrayList<>();
-			observers = g.getObserverAsyncs();
+			observers = generator.getObserverAsyncs();
 
-			for (ObsGenAsync channel : observers) {
-				channel.update(g);
+			for (ObsGenAsync canal : observers) {
+				canal.update(generator);
 			}
 		}
-
 	}
+
 	public void aReaderReads(ObsGenAsync reader) {
+		LOGGER.info("aReaderReads : ");
 		if (observers.contains(reader) && !readers.contains(reader)) {
 			readers.add(reader);
 		}
@@ -63,6 +64,5 @@ public class SequentielDiffusion implements Diffusion {
 			ready = true;
 		}
 	}
-	
 
 }
