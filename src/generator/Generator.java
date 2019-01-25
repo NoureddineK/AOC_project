@@ -1,28 +1,33 @@
 package generator;
 
-import java.util.concurrent.ExecutionException;
+import canal.Promise;
+import diffusion.Diffusion;
+import observer.MySubject;
 
-import observer.ObsGenAsync;
-import observer.ObserverGenerator;
+public interface Generator extends MySubject{
 
-public interface Generator {
+	public int getValue();
+	public void setValue(int value);
 
-	//public void attach(ObserverGenerator o);
+	public void executeGenerator();
 
-	//public void detach(ObserverGenerator o);
+	public void start();
 
-	public void attach(ObsGenAsync o);
+	public void stop();
+	
+	public void notifyObservers();
+	
+	public Diffusion getDiffusion();
 
-	public void detach(ObsGenAsync o);
+	public void setDiffusion(Diffusion diffusion);
 
-	//public void notifyAllObsGenes() throws InterruptedException, ExecutionException;
+	public int getDiffusionValue();
+	
+	public int get_versionEpoq();
 
-	public void setValue(int value) throws InterruptedException, ExecutionException;
+	public void set_versionEpoq(int _versionEpoq);
 
-	public Integer getValue();
+	public void notifyObservers(Promise msg);
 
-	public Integer getValue(ObsGenAsync obs);
-
-	public void generateValue();
-
+	
 }

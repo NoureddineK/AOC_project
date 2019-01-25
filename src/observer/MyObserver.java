@@ -1,7 +1,8 @@
 package observer;
 
-import java.util.concurrent.Future;
+import canal.Promise;
 
 public interface MyObserver<T> {
-	public Future<Void> update(T subject);
+	public void update(T subject);
+	public void update(Promise msgepoq);
 }
