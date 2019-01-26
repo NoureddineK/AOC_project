@@ -1,4 +1,4 @@
-package Callable;
+package callable;
 
 import java.util.concurrent.Callable;
 import canal.Promise;

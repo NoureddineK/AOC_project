@@ -4,10 +4,10 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.logging.Logger;
 
-import Callable.GetValueCallable;
-import Callable.MyExecutorService;
-import Callable.UpdateDisplay;
-import Callable.UpdatePromise;
+import callable.GetValueCallable;
+import callable.MyExecutorService;
+import callable.UpdateDisplay;
+import callable.UpdatePromise;
 import generator.Generator;
 import observer.ObserverCanal;
 import observer.ObserverGenerator;

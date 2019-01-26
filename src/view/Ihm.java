@@ -22,10 +22,10 @@ public class Ihm extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private final Logger LOGGER = Logger.getLogger(this.getClass().getName());
-	public static final int NB_AFFICHEUR = 4;
+	public static final int NB_MONITOR = 4;
 	private Generator generator;
-	ArrayList<JLabel> labelList;
-	ArrayList<Display> displayList;
+	private ArrayList<JLabel> labelList;
+	private ArrayList<Display> displayList;
 
 	public Ihm() {
 		// Init View
@@ -39,9 +39,9 @@ public class Ihm extends JFrame {
 		diffusionChoicePanel.setBackground(Color.WHITE);
 
 		// Diffusion Atomique
-		JRadioButton atomiqueBtn = new JRadioButton("Atomique");
-		diffusionChoicePanel.add(atomiqueBtn);
-		atomiqueBtn.addActionListener(new ActionListener() {
+		JRadioButton atomicBtn = new JRadioButton("Atomic");
+		diffusionChoicePanel.add(atomicBtn);
+		atomicBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				generator.stop();
 				generator.setDiffusion(new AtomicDiffusion());
@@ -51,9 +51,9 @@ public class Ihm extends JFrame {
 		});
 
 		// Diffusion Sequentielle
-		JRadioButton seqBtn = new JRadioButton("Sequentielle");
-		diffusionChoicePanel.add(seqBtn);
-		seqBtn.addActionListener(new ActionListener() {
+		JRadioButton sequentialBtn = new JRadioButton("Sequential");
+		diffusionChoicePanel.add(sequentialBtn);
+		sequentialBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				generator.stop();
@@ -64,9 +64,9 @@ public class Ihm extends JFrame {
 		});
 
 		// Diffusion Causale
-		JRadioButton causBtn = new JRadioButton("Causale");
-		diffusionChoicePanel.add(causBtn);
-		causBtn.addActionListener(new ActionListener() {
+		JRadioButton causalBtn = new JRadioButton("Causal");
+		diffusionChoicePanel.add(causalBtn);
+		causalBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				generator.stop();
@@ -75,26 +75,26 @@ public class Ihm extends JFrame {
 			}
 
 		});
-		radioButtons.add(causBtn);
-		radioButtons.add(atomiqueBtn);
-		radioButtons.add(seqBtn);
+		radioButtons.add(causalBtn);
+		radioButtons.add(atomicBtn);
+		radioButtons.add(sequentialBtn);
 
 		// Afficheurs Label
 		labelList = new ArrayList<JLabel>();
-		for (int i = 0; i < NB_AFFICHEUR; i++) {
+		for (int i = 0; i < NB_MONITOR; i++) {
 			JLabel labaff = new JLabel("Display_" + (i + 1));
 
 			labelList.add(labaff);
 		}
 		// Ajout des textView
 		displayList = new ArrayList<Display>();
-		for (int i = 0; i < NB_AFFICHEUR; i++) {
+		for (int i = 0; i < NB_MONITOR; i++) {
 			JTextArea textArea = new JTextArea(2, 3);
 			textArea.setBackground(Color.CYAN);
 			displayList.add(new Display(textArea));
 		}
 
-		for (int i = 0; i < NB_AFFICHEUR; i++) {
+		for (int i = 0; i < NB_MONITOR; i++) {
 			displayView.add(labelList.get(i));
 			displayView.add(((Display) displayList.get(i)).getComponent());
 		}
@@ -115,7 +115,7 @@ public class Ihm extends JFrame {
 		return this;
 	}
 
-	public void setCapteur(Generator generator) {
+	public void setGenerator(Generator generator) {
 		System.out.println("Ihm setting Generator");
 		this.generator = generator;
 		registerObservers((GeneratorAsync) generator);
