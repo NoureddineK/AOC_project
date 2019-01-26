@@ -1,7 +1,6 @@
 package observer;
 
-import generator.GeneratorAsync;
+import generator.Generator;
 
-public interface ObserverGenerator {
-	public void update(GeneratorAsync subject) throws Exception;
+public interface ObserverGenerator extends MyObserver<Generator>{
 }

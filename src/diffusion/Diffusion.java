@@ -1,13 +1,13 @@
 package diffusion;
 
-import generator.GeneratorImp;
-import observer.ObsGenAsync;
+import generator.Generator;
 
 public interface Diffusion {
 
-	Integer getDiffusionValue(ObsGenAsync observerGeneratorAsync, GeneratorImp generator);
+	int getDiffusionValue();
 
-	void configureDiffusion(GeneratorImp generator, int nbObserver);
+	void configureDiffusion(Generator generator, int nbObservers);
 
-	void executeDiffusion(GeneratorImp generator);
+	void executeDiffusion();
+	
 }

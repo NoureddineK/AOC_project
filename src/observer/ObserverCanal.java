@@ -1,6 +1,6 @@
 package observer;
 
-import updateActiveObject.Canal;
+import canal.Canal;
 
 public interface ObserverCanal extends MyObserver<Canal>{
 
