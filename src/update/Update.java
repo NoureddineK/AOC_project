@@ -1,28 +1,33 @@
 package update;
 
+import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.logging.Logger;
+import observer.*;
+import generator.*;
 
-import canal.Canal;
-import generator.Generator;
-import view.Display;
-
-public class Update implements Callable {
+public class Update implements Callable<Void> {
 	private final Logger LOGGER = Logger.getLogger(this.getClass().getName());
-	private Canal canal;
-	private Display display;
-	
-	public Update(Canal canal, Display display) {
+
+	private GeneratorAsync generator;
+	private List<ObserverGenerator> diffusionList;
+
+	public Update(GeneratorAsync generator, List<ObserverGenerator> diffusionList) {
 		LOGGER.info("Constructor: ");
-		this.canal = canal;
-		this.display = display;
+		this.generator = generator;
+		this.diffusionList = diffusionList;
 	}
 
 	@Override
-	public Object call() throws Exception {
+	public Void call() throws Exception {
 		LOGGER.info("call: ");
-		this.display.update(this.canal);
+		if (diffusionList.size() > 0) {
+			for (ObserverGenerator obsGen : diffusionList) {
+				obsGen.update(generator);
+			}	
+		}
 		return null;
 	}
+
 
 }

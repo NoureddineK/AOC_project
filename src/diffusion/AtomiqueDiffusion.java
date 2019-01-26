@@ -1,56 +1,55 @@
 package diffusion;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
-
 import generator.Generator;
+import generator.GeneratorImp;
+import observer.ObsGenAsync;
+import updateActiveObject.Canal;
 
 public class AtomiqueDiffusion implements Diffusion {
 	private final Logger LOGGER = Logger.getLogger(this.getClass().getName());
-	private int nbObserver = 0;
-	private int nbUpdatesReq = 0;
-	private boolean updatePossible = true;
-	private Generator generator;
+	private List<ObsGenAsync> observers;
+	private boolean read;
+
+	public AtomiqueDiffusion() {
+		LOGGER.info("Constructor : ");
+		this.observers = new ArrayList<>();
+		this.read = true;
+	}
 
 	@Override
-	public void configureDiffusion(Generator generator, int nbObserver) {
+	public void configureDiffusion(GeneratorImp generator, int nbObserver) {
 		LOGGER.info("configureDiffusion : ");
-		this.nbObserver = nbObserver;
-		this.nbUpdatesReq = 0;
-		this.generator = generator;
-		this.updatePossible = true;
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
-	public void executeDiffusion() {
+	public void executeDiffusion(GeneratorImp generator) {
 		LOGGER.info("executeDiffusion : ");
-
-		if (updatePossible) {
-			updatePossible = false;
-			generator.setValue(generator.getDiffusionValue() + 1);
-			generator.notifyObservers();
-
-		} else {
-			System.out.println("No Click");
+		if (this.read) {
+			generator.generateValue();
+			for (ObsGenAsync canal : generator.getObserverAsyncs()) {
+				canal.update(generator);
+			}
+			this.read = false;
+			this.observers.removeAll(this.observers);
 		}
 
 	}
 
 	@Override
-	public int getDiffusionValue() {
+	public Integer getDiffusionValue(ObsGenAsync obsGenAsync, GeneratorImp generator) {
 		LOGGER.info("getDiffusionValue : ");
-		nbUpdatesReq++;
-
-		if (nbUpdatesReq == nbObserver) {
-			updatePossible = true;
-			nbUpdatesReq = 0;
+		if (!this.observers.contains(obsGenAsync)) {
+			this.observers.add(obsGenAsync);
+			if (this.observers.size() == generator.getObserverAsyncs().size()) {
+				this.read = true;
+			}
 		}
-		if (this.generator != null)
-			return this.generator.getDiffusionValue();
-		return 0;
-	}
 
-	public void setGenerator(Generator generator) {
-		this.generator = generator;
+		return generator.getValue();
 	}
-
 }

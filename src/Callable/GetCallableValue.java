@@ -1,13 +1,11 @@
 package Callable;
 
-import java.util.concurrent.Callable;
-
 import generator.Generator;
 
-public class GetValuePromise implements Callable<Integer> {
+public class GetCallableValue {
 	private Generator generator;
 
-	public GetValuePromise(Generator generator) {
+	public GetCallableValue(Generator generator) {
 		this.generator = generator;
 	}
 

@@ -1,69 +1,68 @@
 package diffusion;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
-import generator.Generator;
 import generator.GeneratorImp;
+import observer.ObsGenAsync;
 
 public class SequentielDiffusion implements Diffusion {
 	private final Logger LOGGER = Logger.getLogger(this.getClass().getName());
-	private int nbObservers = 0;
-	private int nbUpdatesReq = 0;
-	private Generator generator;
-	private ArrayList<Integer> listValues; // Garde les differentes valeur du capteur
-	private int curr_index_value; // Geré les valeur a envoyer aux observateurs
+	private List<ObsGenAsync> observers;
+	private List<ObsGenAsync> readers;
+	private boolean ready;
+	private Integer value;
 
 	public SequentielDiffusion() {
 		LOGGER.info("Constructor : ");
-		listValues = new ArrayList<Integer>();
+		value = 0;
+		observers = new ArrayList<ObsGenAsync>();
+		readers = new ArrayList<ObsGenAsync>();
+		ready = true;
 	}
 
-	public void setGenerator(GeneratorImp generator) {
-		LOGGER.info("setValue : ");
-		this.generator = generator;
-	}
-
-	@Override
-	public int getDiffusionValue() {
-		LOGGER.info("getDiffusionValue : ");
-		nbUpdatesReq++;
-		System.out.println(" Get value : req num : " + nbUpdatesReq + " --- nb obs: " + nbObservers);
-		if (curr_index_value < listValues.size() && curr_index_value > -1) {
-			return listValues.get(curr_index_value);
-		}
-		return 0;
-
+	public void setValue(Integer v) {
+		LOGGER.info("setValue : " + v);
+		value = v;
 	}
 
 	@Override
-	public void configureDiffusion(Generator generator, int nbObservers) {
+	public Integer getDiffusionValue(ObsGenAsync observerGeneratorAsync, GeneratorImp generator) {
+		LOGGER.info("getDiffusionValue : " + this.value);
+		return this.value;
+	}
+
+	@Override
+	public void configureDiffusion(GeneratorImp generator, int nbObserver) {
 		LOGGER.info("configureDiffusion : ");
-		listValues = new ArrayList<Integer>();
-		curr_index_value = -1;//
-		this.generator = generator;
-		this.nbObservers = nbObservers;
+
 	}
 
 	@Override
-	public void executeDiffusion() {
+	public void executeDiffusion(GeneratorImp generator) {
 		LOGGER.info("executeDiffusion : ");
-		int generatorValue = generator.getDiffusionValue();
-		listValues.add(generatorValue);
-		this.generator.setValue(generatorValue + 1);
+		generator.generateValue();
+		if (ready) {
+			ready = false;
+			value = generator.getValue();
+			readers = new ArrayList<>();
+			observers = generator.getObserverAsyncs();
 
-		if ((curr_index_value == -1) // first émmision
-				|| (nbUpdatesReq >= nbObservers)) {
-			curr_index_value++;
-			nbUpdatesReq = 0;
-			generator.notifyObservers();
-
+			for (ObsGenAsync canal : observers) {
+				canal.update(generator);
+			}
 		}
 	}
 
-	public void setGenerator(Generator generator) {
-		this.generator = generator;
-
+	public void aReaderReads(ObsGenAsync reader) {
+		LOGGER.info("aReaderReads : ");
+		if (observers.contains(reader) && !readers.contains(reader)) {
+			readers.add(reader);
+		}
+		if (readers.size() == observers.size()) {
+			ready = true;
+		}
 	}
 
 }

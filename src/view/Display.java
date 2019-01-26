@@ -1,50 +1,33 @@
 package view;
 
+import java.util.concurrent.Future;
 import java.util.logging.Logger;
+import generator.GeneratorAsync;
+import observer.ObserverGenerator;
 
-import javax.swing.JTextArea;
-import canal.Canal;
-import canal.CanalImp;
-import canal.Promise;
-import observer.ObserverCanal;
 
-public class Display implements ObserverCanal {
+public class Display implements ObserverGenerator {
 	private final Logger LOGGER = Logger.getLogger(this.getClass().getName());
-	private JTextArea textView;
-	private int myEposqVersion = -1;
-
-	public Display(JTextArea textView) {
+	private Integer value;
+	private int id; 
+	
+	public Display(int id) {
 		LOGGER.info("Constructor: ");
-		this.textView = textView;
-		myEposqVersion = -1;
-	}
-
-	public JTextArea getComponent() {
-		return this.textView;
-	}
-
-	public void setComponent(JTextArea textView) {
-		this.textView = textView;
+		this.id = id;
+		this.value = 0;
 	}
 
 	@Override
-	public void update(Canal canal) {
+	public void update(GeneratorAsync g) throws Exception {
 		LOGGER.info("update: ");
-		int val = ((CanalImp) canal).getValue();
-		this.textView.setText(String.valueOf(val));
-		myEposqVersion = -1;
+		Future<Integer> future = g.getValue();
+		value = future.get();
+		System.out.println("Afficheur " + id + " : " + value);
 	}
 
-	public void update(Promise msgepoq) {
-
-		if (myEposqVersion < msgepoq.get_versionNumber()) {
-
-			textView.setText(String.valueOf(msgepoq.get_value()));
-			myEposqVersion = msgepoq.get_versionNumber();
-
-		} else {
-			// receiving an old version : simply ignore it
-		}
+	public Integer getValue() {
+		LOGGER.info("getValue: "+ this.value);
+		return this.value;
 	}
 
 }
