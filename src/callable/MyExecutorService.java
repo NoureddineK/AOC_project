@@ -10,7 +10,6 @@ public class MyExecutorService {
 	private static final int NTHREDS = 10; 
 	static ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(NTHREDS);
 
-
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static Future submit(Callable value, long time) {
 		return scheduledExecutorService.schedule(value, time, TimeUnit.MILLISECONDS);

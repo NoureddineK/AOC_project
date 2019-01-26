@@ -82,7 +82,7 @@ public class Ihm extends JFrame {
 		// Afficheurs Label
 		labelList = new ArrayList<JLabel>();
 		for (int i = 0; i < NB_MONITOR; i++) {
-			JLabel labaff = new JLabel("Display_" + (i + 1));
+			JLabel labaff = new JLabel("Monitor_ " + (i + 1)+" _");
 
 			labelList.add(labaff);
 		}
@@ -104,7 +104,7 @@ public class Ihm extends JFrame {
 		setLayout(new GridLayout(1, 2));
 		getContentPane().add(diffusionChoicePanel);
 		getContentPane().add(displayView);
-		this.setPreferredSize(new Dimension(1000, 400));
+		this.setPreferredSize(new Dimension(600, 400));
 		this.pack();
 		this.setVisible(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
