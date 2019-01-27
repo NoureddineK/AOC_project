@@ -20,7 +20,7 @@ import main.diffusion.SequentialDiffusion;
 import main.generator.Generator;
 import main.generator.GeneratorAsync;
 
-public class Ihm extends JFrame {
+public class SwingIhm extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private final Logger LOGGER = Logger.getLogger(this.getClass().getName());
@@ -29,7 +29,7 @@ public class Ihm extends JFrame {
 	private ArrayList<JLabel> labelList;
 	private ArrayList<Display> displayList;
 
-	public Ihm() {
+	public SwingIhm() {
 		// Init View
 		JPanel displayView = new JPanel();
 		displayView.setBackground(Color.LIGHT_GRAY);

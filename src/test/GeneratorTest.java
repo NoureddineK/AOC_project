@@ -34,16 +34,20 @@ public class GeneratorTest {
 	
 	@Test
 	public void testingGenerator() {
-		generator.setDiffusion(diffusion);
+		generator.setDiffusion(diffusion);	
 		assertEquals(diffusion, generator.getDiffusion());
+		
 		generator.setDiffusion(mockDiffusion);
 		generator.getValue();
 		verify(mockDiffusion).getDiffusionValue();
+		
 		generator.executeGenerator();
 		verify(mockDiffusion).executeDiffusion();
 		((GeneratorAsync) generator).setHologe(mockDisplayController);
+		
 		generator.start();
 		verify(mockDisplayController).startDisplaying();
+		
 		generator.stop();
 		verify(mockDisplayController).stopDisplaying();
 	}

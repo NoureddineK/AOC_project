@@ -42,12 +42,16 @@ class CausalDiffusionTest {
 	public void testCausalDiffusion() {
 		generator = new GeneratorAsync();
 		mockGenerator = mock(GeneratorAsync.class);
+		
 		causalDiffusion = new CausalDiffusion();
 		mockCausalDiffusion = mock(CausalDiffusion.class);
+		
 		generator.setDiffusion(mockCausalDiffusion);
 		verify(mockCausalDiffusion).configureDiffusion(generator, 0);
+		
 		causalDiffusion.setGenerator(mockGenerator);
 		causalDiffusion.executeDiffusion();
+		
 		verify(mockGenerator).getDiffusionValue();
 		verify(mockGenerator).getCycleValue();
 	}

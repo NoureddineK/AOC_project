@@ -3,14 +3,11 @@ package main.view;
 import java.util.logging.Logger;
 
 import javax.swing.JTextArea;
-
-import javafx.scene.control.Label;
 import main.canal.Canal;
 import main.canal.CanalImp;
 import main.canal.Promise;
 import main.observer.ObserverCanal;
 
-@SuppressWarnings("restriction")
 public class Display implements ObserverCanal {
 	private final Logger LOGGER = Logger.getLogger(this.getClass().getName());
 	private JTextArea textView;

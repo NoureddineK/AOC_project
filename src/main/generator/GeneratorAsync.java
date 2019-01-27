@@ -2,7 +2,6 @@ package main.generator;
 
 import java.util.ArrayList;
 import java.util.logging.Logger;
-
 import main.canal.CanalImp;
 import main.canal.Promise;
 import main.diffusion.Diffusion;
@@ -81,6 +80,7 @@ public class GeneratorAsync implements Generator {
 		genObserversList.add(canal);
 	}
 
+	@SuppressWarnings("unlikely-arg-type")
 	public void detach(Object o) {
 		genObserversList.remove((ObserverCanal) o);
 	}

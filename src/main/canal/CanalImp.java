@@ -3,14 +3,12 @@ package main.canal;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.logging.Logger;
-
 import main.callable.GetValueCallable;
 import main.callable.MyExecutorService;
 import main.callable.UpdateDisplay;
 import main.callable.UpdatePromise;
 import main.generator.Generator;
 import main.observer.ObserverCanal;
-import main.observer.ObserverGenerator;
 import main.view.Display;
 
 public class CanalImp implements Canal {
