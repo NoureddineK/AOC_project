@@ -1,2 +1,3 @@
-# AOC_project
-## Projet Capteurs (AOC)
+# Projet AOC
+## Introduction
+Le projet consiste à mettre en place le design pattern *Active Object* vu en cours, pour la diffusion de valeurs entières générées à partir d'un générateur ....
