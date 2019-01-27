@@ -1,6 +1,7 @@
 package main.view;
 
 import java.awt.BorderLayout;
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -9,15 +10,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.logging.Logger;
-import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
-
-import main.diffusion.*;
-import main.generator.*;
+import main.diffusion.AtomicDiffusion;
+import main.diffusion.CausalDiffusion;
+import main.diffusion.SequentialDiffusion;
+import main.generator.Generator;
+import main.generator.GeneratorAsync;
 
 public class Ihm extends JFrame {
 
@@ -34,14 +35,14 @@ public class Ihm extends JFrame {
 		displayView.setBackground(Color.LIGHT_GRAY);
 		displayView.setLayout(new FlowLayout());
 
-		// Radio Buttons
-		ButtonGroup radioButtons = new ButtonGroup();
+		// Diffusion Buttons
 		JPanel diffusionChoicePanel = new JPanel();
 		diffusionChoicePanel.setBackground(Color.WHITE);
 
 		// Diffusion Atomique
-		JRadioButton atomicBtn = new JRadioButton("Atomic");
+		Button atomicBtn = new Button("Atomic");
 		diffusionChoicePanel.add(atomicBtn);
+		atomicBtn.setMinimumSize(new Dimension(40, 40));
 		atomicBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				generator.stop();
@@ -52,7 +53,7 @@ public class Ihm extends JFrame {
 		});
 
 		// Diffusion Sequentielle
-		JRadioButton sequentialBtn = new JRadioButton("Sequential");
+		Button sequentialBtn = new Button("Sequential");
 		diffusionChoicePanel.add(sequentialBtn);
 		sequentialBtn.addActionListener(new ActionListener() {
 
@@ -61,14 +62,12 @@ public class Ihm extends JFrame {
 				generator.setDiffusion(new SequentialDiffusion());
 				generator.start();
 			}
-
 		});
 
 		// Diffusion Causale
-		JRadioButton causalBtn = new JRadioButton("Causal");
+		Button causalBtn = new Button("Causal");
 		diffusionChoicePanel.add(causalBtn);
 		causalBtn.addActionListener(new ActionListener() {
-
 			public void actionPerformed(ActionEvent e) {
 				generator.stop();
 				generator.setDiffusion(new CausalDiffusion());
@@ -76,15 +75,15 @@ public class Ihm extends JFrame {
 			}
 
 		});
-		radioButtons.add(causalBtn);
-		radioButtons.add(atomicBtn);
-		radioButtons.add(sequentialBtn);
-
+	
+		atomicBtn.setBackground(Color.LIGHT_GRAY);
+		sequentialBtn.setBackground(Color.LIGHT_GRAY);
+		causalBtn.setBackground(Color.LIGHT_GRAY);
+		//causalBtn.setForeground(Color.GRAY);
 		// Afficheurs Label
 		labelList = new ArrayList<JLabel>();
 		for (int i = 0; i < NB_MONITOR; i++) {
-			JLabel labaff = new JLabel("Monitor_ " + (i + 1)+" _");
-
+			JLabel labaff = new JLabel("Monitor_ " + (i + 1) + " _");
 			labelList.add(labaff);
 		}
 		// Ajout des textView
@@ -109,7 +108,6 @@ public class Ihm extends JFrame {
 		this.pack();
 		this.setVisible(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-
 	}
 
 	public JFrame getParentFrame() {
@@ -120,7 +118,6 @@ public class Ihm extends JFrame {
 		System.out.println("Ihm setting Generator");
 		this.generator = generator;
 		registerObservers((GeneratorAsync) generator);
-
 	}
 
 	private void registerObservers(GeneratorAsync c) {

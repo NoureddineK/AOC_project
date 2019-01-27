@@ -20,7 +20,7 @@ public class GeneratorAsync implements Generator {
 	private int generatorValue = 0;
 	private DisplayController controller;
 	private int cycleValue = 0;
-	
+
 	public GeneratorAsync() {
 		LOGGER.info("Constructor: ");
 		genObserversList = new ArrayList<ObserverGenerator>();
@@ -38,11 +38,11 @@ public class GeneratorAsync implements Generator {
 		LOGGER.info("setValue: ");
 		this.generatorValue = value;
 	}
-	
+
 	public Diffusion getDiffusion() {
 		return this.diffusion;
 	}
-	
+
 	public void setDiffusion(Diffusion diffusion) {
 		LOGGER.info("setDiffusion");
 		this.generatorValue = 0;
@@ -62,11 +62,13 @@ public class GeneratorAsync implements Generator {
 	}
 
 	public void start() {
-		controller.startDisplaying();
+		if (controller != null)
+			controller.startDisplaying();
 	}
 
 	public void stop() {
-		controller.stopDisplaying();
+		if (controller != null)
+			controller.stopDisplaying();
 	}
 
 	public int getDiffusionValue() {

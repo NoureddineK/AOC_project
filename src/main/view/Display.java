@@ -4,11 +4,13 @@ import java.util.logging.Logger;
 
 import javax.swing.JTextArea;
 
+import javafx.scene.control.Label;
 import main.canal.Canal;
 import main.canal.CanalImp;
 import main.canal.Promise;
 import main.observer.ObserverCanal;
 
+@SuppressWarnings("restriction")
 public class Display implements ObserverCanal {
 	private final Logger LOGGER = Logger.getLogger(this.getClass().getName());
 	private JTextArea textView;
@@ -31,13 +33,15 @@ public class Display implements ObserverCanal {
 	public void update(Canal canal) {
 		LOGGER.info("update: ");
 		int val = ((CanalImp) canal).getValue();
-		this.textView.setText(String.valueOf(val));
+		this.textView.setText(Integer.toString(val));
+		System.out.println("Update Canal: "+Integer.toString(val));
 		cycleValue = 0;
 	}
 
 	public void update(Promise promise) {
 		if (cycleValue < promise.getPromiseValue()) {
-			textView.setText(String.valueOf(promise.getValue()));
+			textView.setText(Integer.toString(promise.getValue()));
+			System.out.println("Update promise: "+Integer.toString(promise.getValue()));
 			cycleValue = promise.getPromiseValue();
 
 		} else {

@@ -35,7 +35,7 @@ public class GeneratorTest {
 	@Test
 	public void testingGenerator() {
 		generator.setDiffusion(diffusion);
-		assertEquals(diffusion.hashCode(), generator.getDiffusion().hashCode());
+		assertEquals(diffusion, generator.getDiffusion());
 		generator.setDiffusion(mockDiffusion);
 		generator.getValue();
 		verify(mockDiffusion).getDiffusionValue();

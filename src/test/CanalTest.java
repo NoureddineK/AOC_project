@@ -11,7 +11,6 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
-
 import main.canal.CanalImp;
 import main.generator.Generator;
 import main.generator.GeneratorAsync;
@@ -30,7 +29,7 @@ public class CanalTest {
 		display = new Display(new JTextArea());
 		generator = new GeneratorAsync();
 	}
-
+	
 	@Test
 	public void testingCanal() {
 		CanalImp canal = new CanalImp(generator);
