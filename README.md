@@ -15,6 +15,8 @@ Voici un exemple pour Update
 
 ### Diagramme de Séquence
 ![](UpdateAsync1.png)
+![](UpdateAsync2.png)
+
 
 
 
