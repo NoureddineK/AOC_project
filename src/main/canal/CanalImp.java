@@ -11,9 +11,8 @@ import main.generator.Generator;
 import main.observer.ObserverCanal;
 import main.view.Display;
 /**
- * 
- * @author Noureddine KADRI and Fahim MERZOUK
- *
+ * @author Noureddine KADRI  
+ * @author Fahim MERZOUK
  */
 public class CanalImp implements Canal {
 	private final Logger LOGGER = Logger.getLogger(this.getClass().getName());

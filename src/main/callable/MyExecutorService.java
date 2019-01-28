@@ -1,7 +1,8 @@
 package main.callable;
 
 /** 
- * @author Noureddine KADRI  Fahim MERZOUK
+ * @author Noureddine KADRI  
+ * @author Fahim MERZOUK
  * 
  * ScheduledExecutorService
  */

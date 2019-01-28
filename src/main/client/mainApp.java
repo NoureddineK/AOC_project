@@ -1,8 +1,7 @@
 package main.client;
 /**
- * 
- * @author Noureddine KADRI & Fahim MERZOUK
- *
+ * @author Noureddine KADRI  
+ * @author Fahim MERZOUK
  * main Application  
  */
 import java.util.concurrent.ExecutionException;

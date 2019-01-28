@@ -7,9 +7,9 @@ import main.generator.Generator;
 import main.generator.GeneratorAsync;
 
 /**
- * 
- * @author Noureddine KADRI & Fahim MERZOUK
- *
+ * @author Noureddine KADRI  
+ * @author Fahim MERZOUK
+ * SequentialDiffusion
  */
 public class SequentialDiffusion implements Diffusion {
 	private final Logger LOGGER = Logger.getLogger(this.getClass().getName());

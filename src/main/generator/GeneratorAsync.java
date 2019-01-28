@@ -11,9 +11,8 @@ import main.observer.ObserverCanal;
 import main.observer.ObserverGenerator;
 import main.view.Display;
 /**
- * 
- * @author Noureddine KADRI & Fahim MERZOUK
- *
+ * @author Noureddine KADRI  
+ * @author Fahim MERZOUK
  */
 public class GeneratorAsync implements Generator {
 	private final Logger LOGGER = Logger.getLogger(this.getClass().getName());

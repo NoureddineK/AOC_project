@@ -5,8 +5,8 @@ import java.util.concurrent.Callable;
 import main.canal.Promise;
 import main.view.Display;
 /**
- * 
- * @author Noureddine KADRI and Fahim MERZOUK
+ * @author Noureddine KADRI  
+ * @author Fahim MERZOUK
  * 
  * Update Causal value
  */

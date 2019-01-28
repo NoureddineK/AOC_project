@@ -6,9 +6,8 @@ import main.observer.ObserverCanal;
 import main.observer.ObserverGenerator;
 
 /**
- * 
- * @author Noureddine KADRI and Fahim MERZOUK
- *
+ * @author Noureddine KADRI  
+ * @author Fahim MERZOUK
  */
 public interface Canal extends ObserverGenerator, MySubject {
 	/**

@@ -6,9 +6,9 @@ import main.canal.Promise;
 import main.generator.Generator;
 
 /**
- * 
- * @author Noureddine KADRI & Fahim MERZOUK
- *
+ * @author Noureddine KADRI  
+ * @author Fahim MERZOUK
+ * CausalDiffusion
  */
 public class CausalDiffusion implements Diffusion {
 	private final Logger LOGGER = Logger.getLogger(this.getClass().getName());
@@ -26,7 +26,7 @@ public class CausalDiffusion implements Diffusion {
 	 * Configure Causal Diffusion
 	 * 
 	 * @param Generator
-	 * @param nomber    of Observers
+	 * @param nomber of Observers
 	 */
 	public void configureDiffusion(Generator generator, int nbObservers) {
 		LOGGER.info("configureDiffusion : ");

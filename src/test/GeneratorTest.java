@@ -14,9 +14,9 @@ import main.diffusion.*;
 import main.generator.*;
 import main.instruction.DisplayController;
 /**
- * 
- * @author Noureddine KADRI & Fahim MERZOUK
- *
+ * @author Noureddine KADRI  
+ * @author Fahim MERZOUK
+ * Testing Generator
  */
 @RunWith(MockitoJUnitRunner.class)
 public class GeneratorTest {

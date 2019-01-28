@@ -5,7 +5,8 @@ import java.util.concurrent.Callable;
 import main.canal.Canal;
 import main.view.Display;
 /**
- * @author Noureddine KADRI & Fahim MERZOUK
+ * @author Noureddine KADRI  
+ * @author Fahim MERZOUK
  * Update Monitors value
  */
 @SuppressWarnings("rawtypes")

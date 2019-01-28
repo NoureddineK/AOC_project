@@ -4,7 +4,8 @@ import main.generator.Generator;
 
 /**
  * 
- * @author Noureddine KADRI & Fahim MERZOUK
+ * @author Noureddine KADRI 
+ * @author Fahim MERZOUK
  *
  */
 public interface Diffusion {

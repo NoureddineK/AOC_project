@@ -7,10 +7,10 @@ import main.canal.Canal;
 import main.canal.CanalImp;
 import main.canal.Promise;
 import main.observer.ObserverCanal;
+
 /**
- * 
- * @author Noureddine KADRI & Fahim MERZOUK
- *
+ * @author Noureddine KADRI
+ * @author Fahim MERZOUK
  */
 public class Display implements ObserverCanal {
 	private final Logger LOGGER = Logger.getLogger(this.getClass().getName());
@@ -23,10 +23,20 @@ public class Display implements ObserverCanal {
 		cycleValue = 0;
 	}
 
+	/**
+	 * Ihm Monitors: Get Component
+	 * 
+	 * @return JTextArea
+	 */
 	public JTextArea getComponent() {
 		return this.textView;
 	}
 
+	/**
+	 * Ihm Monitors: Set Component
+	 * 
+	 * @param textView
+	 */
 	public void setComponent(JTextArea textView) {
 		this.textView = textView;
 	}
@@ -35,14 +45,14 @@ public class Display implements ObserverCanal {
 		LOGGER.info("update: ");
 		int val = ((CanalImp) canal).getValue();
 		this.textView.setText(Integer.toString(val));
-		System.out.println("Update Canal: "+Integer.toString(val));
+		System.out.println("Update Canal: " + Integer.toString(val));
 		cycleValue = 0;
 	}
 
 	public void update(Promise promise) {
 		if (cycleValue < promise.getPromiseValue()) {
 			textView.setText(Integer.toString(promise.getValue()));
-			System.out.println("Update promise: "+Integer.toString(promise.getValue()));
+			System.out.println("Update promise: " + Integer.toString(promise.getValue()));
 			cycleValue = promise.getPromiseValue();
 
 		} else {

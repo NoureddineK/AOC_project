@@ -1,8 +1,7 @@
 package main.observer;
 /**
- * 
- * @author Noureddine KADRI & Fahim MERZOUK
- *
+ * @author Noureddine KADRI  
+ * @author Fahim MERZOUK
  */
 public interface MySubject {
 	public void attach(Object o);

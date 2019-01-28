@@ -1,8 +1,7 @@
 package main.canal;
 /**
- * 
- * @author Noureddine KADRI and Fahim MERZOUK
- *
+ * @author Noureddine KADRI  
+ * @author Fahim MERZOUK
  * Promise Object Used to Update Causal Value
  */
 public class Promise {

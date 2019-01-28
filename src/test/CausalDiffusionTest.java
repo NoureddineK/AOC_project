@@ -14,9 +14,10 @@ import main.canal.Canal;
 import main.diffusion.*;
 import main.generator.*;
 /**
+ * @author Noureddine KADRI  
+ * @author Fahim MERZOUK
  * 
- * @author Noureddine KADRI & Fahim MERZOUK
- *
+ * Testing Causal Diffusion
  */
 @RunWith(MockitoJUnitRunner.class)
 class CausalDiffusionTest {

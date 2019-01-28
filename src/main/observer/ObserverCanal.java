@@ -2,9 +2,8 @@ package main.observer;
 
 import main.canal.Canal;
 /**
- * 
- * @author Noureddine KADRI & Fahim MERZOUK
- *
+ * @author Noureddine KADRI  
+ * @author Fahim MERZOUK
  */
 public interface ObserverCanal extends MyObserver<Canal>{
 

@@ -19,10 +19,12 @@ import main.diffusion.CausalDiffusion;
 import main.diffusion.SequentialDiffusion;
 import main.generator.Generator;
 import main.generator.GeneratorAsync;
+
 /**
+ * @author Noureddine KADRI
+ * @author Fahim MERZOUK
  * 
- * @author Noureddine KADRI & Fahim MERZOUK
- *
+ *         Java Swing IHM
  */
 public class SwingIhm extends JFrame {
 
@@ -43,7 +45,7 @@ public class SwingIhm extends JFrame {
 		JPanel diffusionChoicePanel = new JPanel();
 		diffusionChoicePanel.setBackground(Color.WHITE);
 
-		// Diffusion Atomique
+		// Atomic Diffusion
 		Button atomicBtn = new Button("Atomic");
 		diffusionChoicePanel.add(atomicBtn);
 		atomicBtn.setMinimumSize(new Dimension(40, 40));
@@ -56,7 +58,7 @@ public class SwingIhm extends JFrame {
 
 		});
 
-		// Diffusion Sequentielle
+		// Sequential Diffusion
 		Button sequentialBtn = new Button("Sequential");
 		diffusionChoicePanel.add(sequentialBtn);
 		sequentialBtn.addActionListener(new ActionListener() {
@@ -68,7 +70,7 @@ public class SwingIhm extends JFrame {
 			}
 		});
 
-		// Diffusion Causale
+		// Causal Diffusion
 		Button causalBtn = new Button("Causal");
 		diffusionChoicePanel.add(causalBtn);
 		causalBtn.addActionListener(new ActionListener() {
@@ -79,18 +81,18 @@ public class SwingIhm extends JFrame {
 			}
 
 		});
-	
+
 		atomicBtn.setBackground(Color.LIGHT_GRAY);
 		sequentialBtn.setBackground(Color.LIGHT_GRAY);
 		causalBtn.setBackground(Color.LIGHT_GRAY);
-		//causalBtn.setForeground(Color.GRAY);
-		// Afficheurs Label
+
+		// Labels
 		labelList = new ArrayList<JLabel>();
 		for (int i = 0; i < NB_MONITOR; i++) {
 			JLabel labaff = new JLabel("Monitor_ " + (i + 1) + " _");
 			labelList.add(labaff);
 		}
-		// Ajout des textView
+		// Adding TextViews
 		displayList = new ArrayList<Display>();
 		for (int i = 0; i < NB_MONITOR; i++) {
 			JTextArea textArea = new JTextArea(2, 3);

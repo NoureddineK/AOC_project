@@ -5,9 +5,8 @@ import java.util.logging.Logger;
 import main.generator.Generator;
 
 /**
- * 
- * @author Noureddine KADRI and Fahim MERZOUK
- *
+ * @author Noureddine KADRI  
+ * @author Fahim MERZOUK
  *         AtomicDiffusion
  */
 public class AtomicDiffusion implements Diffusion {

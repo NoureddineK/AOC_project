@@ -3,9 +3,9 @@ package main.instruction;
 import java.util.Timer;
 import java.util.TimerTask;
 /**
- * 
- * @author Noureddine KADRI & Fahim MERZOUK
- *
+ * @author Noureddine KADRI  
+ * @author Fahim MERZOUK
+ * Monitors Controller 
  */
 public class DisplayController {
 	private GenerateValue generateValue;
@@ -30,11 +30,19 @@ public class DisplayController {
 		timer.cancel();
 	}
 
+	/**
+	 * Cycle Activation 
+	 * @param generateValue
+	 * @param cycle
+	 */
 	public void activeCycle(GenerateValue generateValue, float cycle) {
 		this.generateValue = generateValue;
 		activation = (long) cycle;
 	}
 
+	/**
+	 * Update Displaying
+	 */
 	public void update() {
 		stopDisplaying();
 		startDisplaying();
