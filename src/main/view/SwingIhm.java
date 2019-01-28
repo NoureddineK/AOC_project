@@ -19,7 +19,11 @@ import main.diffusion.CausalDiffusion;
 import main.diffusion.SequentialDiffusion;
 import main.generator.Generator;
 import main.generator.GeneratorAsync;
-
+/**
+ * 
+ * @author Noureddine KADRI & Fahim MERZOUK
+ *
+ */
 public class SwingIhm extends JFrame {
 
 	private static final long serialVersionUID = 1L;

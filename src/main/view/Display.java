@@ -7,7 +7,11 @@ import main.canal.Canal;
 import main.canal.CanalImp;
 import main.canal.Promise;
 import main.observer.ObserverCanal;
-
+/**
+ * 
+ * @author Noureddine KADRI & Fahim MERZOUK
+ *
+ */
 public class Display implements ObserverCanal {
 	private final Logger LOGGER = Logger.getLogger(this.getClass().getName());
 	private JTextArea textView;

@@ -2,7 +2,11 @@ package main.instruction;
 
 import java.util.Timer;
 import java.util.TimerTask;
-
+/**
+ * 
+ * @author Noureddine KADRI & Fahim MERZOUK
+ *
+ */
 public class DisplayController {
 	private GenerateValue generateValue;
 	private Timer timer;

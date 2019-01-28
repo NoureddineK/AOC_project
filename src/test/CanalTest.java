@@ -15,7 +15,11 @@ import main.canal.CanalImp;
 import main.generator.Generator;
 import main.generator.GeneratorAsync;
 import main.view.Display;
-
+/**
+ * 
+ * @author Noureddine KADRI & Fahim MERZOUK
+ *
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class CanalTest {
 	private Display display;

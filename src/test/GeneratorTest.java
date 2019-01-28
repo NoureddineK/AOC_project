@@ -13,7 +13,11 @@ import org.mockito.runners.MockitoJUnitRunner;
 import main.diffusion.*;
 import main.generator.*;
 import main.instruction.DisplayController;
-
+/**
+ * 
+ * @author Noureddine KADRI & Fahim MERZOUK
+ *
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class GeneratorTest {
 

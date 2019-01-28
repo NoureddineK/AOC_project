@@ -5,7 +5,11 @@ import java.util.logging.Logger;
 
 import main.canal.Canal;
 import main.view.Display;
-
+/**
+ * 
+ * @author Noureddine KADRI & Fahim MERZOUK
+ *
+ */
 @SuppressWarnings("rawtypes")
 public class Update implements Callable {
 	private final Logger LOGGER = Logger.getLogger(this.getClass().getName());

@@ -14,7 +14,11 @@ import org.mockito.runners.MockitoJUnitRunner;
 import main.canal.Canal;
 import main.diffusion.*;
 import main.generator.*;
-
+/**
+ * 
+ * @author Noureddine KADRI & Fahim MERZOUK
+ *
+ */
 @RunWith(MockitoJUnitRunner.class)
 class AtomicDiffusionTest {
 

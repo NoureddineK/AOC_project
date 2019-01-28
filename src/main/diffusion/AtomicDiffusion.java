@@ -4,6 +4,12 @@ import java.util.logging.Logger;
 
 import main.generator.Generator;
 
+/**
+ * 
+ * @author Noureddine KADRI and Fahim MERZOUK
+ *
+ *         AtomicDiffusion
+ */
 public class AtomicDiffusion implements Diffusion {
 	private final Logger LOGGER = Logger.getLogger(this.getClass().getName());
 	private int nbObservers = 0;

@@ -3,7 +3,11 @@ package main.generator;
 import main.canal.Promise;
 import main.diffusion.Diffusion;
 import main.observer.MySubject;
-
+/**
+ * 
+ * @author Noureddine KADRI & Fahim MERZOUK
+ *
+ */
 public interface Generator extends MySubject {
 
 	public int getValue();

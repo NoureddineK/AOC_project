@@ -6,6 +6,11 @@ import java.util.logging.Logger;
 import main.generator.Generator;
 import main.generator.GeneratorAsync;
 
+/**
+ * 
+ * @author Noureddine KADRI & Fahim MERZOUK
+ *
+ */
 public class SequentialDiffusion implements Diffusion {
 	private final Logger LOGGER = Logger.getLogger(this.getClass().getName());
 	private int nbObservers = 0;
@@ -48,7 +53,7 @@ public class SequentialDiffusion implements Diffusion {
 		generatedValues.add(generatorValue);
 		this.generator.setValue(generatorValue + 1);
 
-		// Test si il y a des valeurs a afficher 
+		// Test si il y a des valeurs a afficher
 		if ((valueIndex == -1) || (nbPromiseUpdated >= nbObservers)) {
 			valueIndex++;
 			nbPromiseUpdated = 0;

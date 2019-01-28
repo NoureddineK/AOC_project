@@ -1,5 +1,10 @@
 package main.canal;
-
+/**
+ * 
+ * @author Noureddine KADRI and Fahim MERZOUK
+ *
+ * Promise Object Used to Update Causal Value
+ */
 public class Promise {
 	private int value; 
 	private int promiseVal;

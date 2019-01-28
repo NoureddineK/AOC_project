@@ -5,6 +5,11 @@ import java.util.logging.Logger;
 import main.canal.Promise;
 import main.generator.Generator;
 
+/**
+ * 
+ * @author Noureddine KADRI & Fahim MERZOUK
+ *
+ */
 public class CausalDiffusion implements Diffusion {
 	private final Logger LOGGER = Logger.getLogger(this.getClass().getName());
 	private Generator generator;
@@ -17,6 +22,12 @@ public class CausalDiffusion implements Diffusion {
 		return 0;
 	}
 
+	/**
+	 * Configure Causal Diffusion
+	 * 
+	 * @param Generator
+	 * @param nomber    of Observers
+	 */
 	public void configureDiffusion(Generator generator, int nbObservers) {
 		LOGGER.info("configureDiffusion : ");
 		this.generator = generator;

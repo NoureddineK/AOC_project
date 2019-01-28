@@ -1,7 +1,11 @@
 package main.instruction;
 
 import main.generator.Generator;
-
+/**
+ * 
+ * @author Noureddine KADRI & Fahim MERZOUK
+ *
+ */
 public class GenerateValue{
 
 	private Generator generator;
