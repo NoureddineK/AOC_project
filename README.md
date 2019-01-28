@@ -8,5 +8,30 @@ Notre programme permet de générer des valeurs et de les diffuser aux afficheur
 Il existe trois modes de diffusion: Aomique (la mise à jour suivante est envoyée seulement si la première est reçue), Causale et Séquentielle(l'ordre d'arrivée des mises à jour n'est pas vérifié), pour donner ce choix à l'utilisateur, nous avons utilisé le PC Strategy qui répond parfaitement à ce genre de problématique de conception.
 ### GUI 
 L'interface graphique de notre programme est réalisée avec **JavaSwing**
+#### Capture d'écran GUI
+Voici le rendu final de notre programme, le choix est donné pour choisir la stratégie de diffusion des valeurs
+![](gui.png)
+### Patron de conception *Active Object*
+Nous avons mis en place deux fois le design pattern Active Object, parce qu'on a besoin d'appels asyncrones dans les deux sens.
+Voici un exemple pour Update
+![](UpdateClass.png)
+
+### Diagramme de Séquence
+![](UpdateAsync1.png)
+![](UpdateAsync2.png)
+![](UpdateAsync3.png)
+
+### Technologies utilisées
+* **Langage** : Java 8
+* **Interface graphique** : JavaSwing
+* **Build** : Maven
+
+### Build 
+```maven install``` 
+
+
+
+
+
 
 
