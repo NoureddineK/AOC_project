@@ -18,6 +18,14 @@ Voici un exemple pour Update
 ![](UpdateAsync2.png)
 ![](UpdateAsync3.png)
 
+### Technologies utilisées
+* **Langage** : Java 8
+* **Interface graphique** : JavaSwing
+* **Build** : Maven
+
+### Build 
+```maven install``` 
+
 
 
 
