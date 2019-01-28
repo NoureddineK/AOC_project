@@ -13,6 +13,11 @@ Nous avons mis en place deux fois le design pattern Active Object, parce qu'on a
 Voici un exemple pour Update
 ![](UpdateClass.png)
 
+### Diagramme de Séquence
+![](UpdateAsync1.png)
+
+
+
 
 
 
